@@ -60,7 +60,7 @@ class Map:
         neighbours = []
         if self.grid[x][y + 1] is not None:
             neighbours.append(self.grid[x][y + 1])
-        if self.grid[x][y - 1] is not None:
+        if self.grid[x][y] is not None:
             neighbours.append(self.grid[x][y - 1])
         if self.grid[x + 1][y] is not None:
             neighbours.append(self.grid[x + 1][y])
