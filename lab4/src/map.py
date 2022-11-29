@@ -4,9 +4,11 @@ from .city import City
 
 
 class Map:
+    _grid_offset = 10
+
     def __init__(self, countries_data):
         self.countries = []
-        self.grid: List[List[City]] = [[None] * (10 + 2) for _ in range((10 + 2))]
+        self.grid: List[List[City]] = [[None] * (self._grid_offset + 2) for _ in range((10 + 2))]
         self.__initialize_grid(countries_data)
         self.__validate_foreign_neighbours()
 
@@ -18,14 +20,14 @@ class Map:
         full = False
         day = 1
         while not full:
-            for x in range(10 + 1):
-                for y in range(10 + 1):
+            for x in range(self._grid_offset + 1):
+                for y in range(self._grid_offset + 1):
                     if self.grid[x][y] is not None:
                         city = self.grid[x][y]
                         city.transfer_to_neighbours()
 
-            for x in range(10 + 1):
-                for y in range(10 + 1):
+            for x in range(self._grid_offset + 1):
+                for y in range(self._grid_offset + 1):
                     if self.grid[x][y] is not None:
                         city = self.grid[x][y]
                         city.finalize_balance_per_day()
